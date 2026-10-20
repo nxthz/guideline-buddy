@@ -1,0 +1,67 @@
+{
+    "name":  "guideline-buddy",
+    "productName":  "Guideline Buddy",
+    "version":  "1.0.3",
+    "description":  "ผู้ช่วย Guideline 8Story: น้องหมานั่งบนจอ บอกงานของคนที่มาร์คไว้",
+    "main":  "main.js",
+    "author":  "8Story",
+    "scripts":  {
+                    "start":  "electron .",
+                    "dist":  "electron-builder --win portable nsis",
+                    "dist:mac":  "electron-builder --mac dmg --universal --publish never"
+                },
+    "build":  {
+                  "appId":  "com.8story.guideline-buddy",
+                  "productName":  "Guideline Buddy",
+                  "files":  [
+                                "main.js",
+                                "preload.js",
+                                "local/**",
+                                "icon.png",
+                                "icon-mac.png"
+                            ],
+                  "win":  {
+                              "icon":  "icon.png",
+                              "target":  [
+                                             "nsis",
+                                             "portable"
+                                         ]
+                          },
+                  "nsis":  {
+                               "oneClick":  true,
+                               "perMachine":  false,
+                               "createDesktopShortcut":  true,
+                               "shortcutName":  "Guideline Buddy"
+                           },
+                  "portable":  {
+                                   "artifactName":  "GuidelineBuddy-portable.exe"
+                               },
+                  "directories":  {
+                                      "output":  "dist"
+                                  },
+                  "mac":  {
+                              "target":  [
+                                             {
+                                                 "target":  "dmg",
+                                                 "arch":  [
+                                                              "universal"
+                                                          ]
+                                             }
+                                         ],
+                              "icon":  "icon-mac.png",
+                              "identity":  "-",
+                              "category":  "public.app-category.productivity",
+                              "extendInfo":  {
+                                                 "LSUIElement":  true
+                                             }
+                          },
+                  "dmg":  {
+                              "artifactName":  "GuidelineBuddy-mac.dmg",
+                              "title":  "Guideline Buddy"
+                          }
+              },
+    "devDependencies":  {
+                            "electron":  "^33.2.1",
+                            "electron-builder":  "^25.1.8"
+                        }
+}
